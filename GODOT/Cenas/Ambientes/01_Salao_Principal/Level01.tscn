@@ -1,0 +1,93 @@
+[gd_scene load_steps=9 format=3]
+
+[ext_resource type="PackedScene" path="res://Cenas/Personagens/Player.tscn" id="1_2e4b7"]
+[ext_resource type="PackedScene" path="res://Cenas/Personagens/Guard.tscn" id="2_m7u6j"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_Floor"]
+size = Vector3(20, 1, 20)
+
+[sub_resource type="BoxMesh" id="BoxMesh_Floor"]
+size = Vector3(20, 1, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_Wall"]
+size = Vector3(20, 3, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_Wall"]
+size = Vector3(20, 3, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_Floor"]
+albedo_color = Color(0.2, 0.17, 0.14, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_Wall"]
+albedo_color = Color(0.4, 0.25, 0.18, 1)
+roughness = 0.8
+
+[node name="Level01" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 0, 8, 0)
+light_energy = 1.2
+shadow_enabled = true
+
+[node name="Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("BoxShape3D_Floor")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("BoxMesh_Floor")
+material_override = SubResource("StandardMaterial3D_Floor")
+
+[node name="WallNorth" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -9.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallNorth"]
+shape = SubResource("BoxShape3D_Wall")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WallNorth"]
+mesh = SubResource("BoxMesh_Wall")
+material_override = SubResource("StandardMaterial3D_Wall")
+
+[node name="WallSouth" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 9.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallSouth"]
+shape = SubResource("BoxShape3D_Wall")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WallSouth"]
+mesh = SubResource("BoxMesh_Wall")
+material_override = SubResource("StandardMaterial3D_Wall")
+
+[node name="WallEast" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 1, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallEast"]
+shape = SubResource("BoxShape3D_Wall")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WallEast"]
+mesh = SubResource("BoxMesh_Wall")
+material_override = SubResource("StandardMaterial3D_Wall")
+
+[node name="WallWest" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5, 1, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallWest"]
+shape = SubResource("BoxShape3D_Wall")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WallWest"]
+mesh = SubResource("BoxMesh_Wall")
+material_override = SubResource("StandardMaterial3D_Wall")
+
+[node name="Player" parent="." instance=ExtResource("1_2e4b7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 4)
+
+[node name="Guard" parent="." instance=ExtResource("2_m7u6j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, -2)
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, -2)
+text = "Salão Principal"
+font_size = 48
+modulate = Color(0.93, 0.79, 0.52, 1)

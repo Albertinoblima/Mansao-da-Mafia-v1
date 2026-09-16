@@ -1,3 +1,17 @@
 ﻿# Ignore large local binaries
 GODOT/Godot_v4.7.2-stable_win64.exe/
 *.exe
+
+# Godot editor and cache
+.godot/
+*.import/
+.import/
+*.cache/
+*.uid
+# Temporary and backup files
+*.tmp
+~$*
+# OS files
+Thumbs.db
+.DS_Store
+
